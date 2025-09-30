@@ -1,0 +1,16 @@
+{
+    "name": "kanxphp/session",
+    "description": "Simple API for PHP Session",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Kanxphp\\Session\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Marco Monteiro"
+        }
+    ],
+    "require": {}
+}
