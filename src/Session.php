@@ -1,12 +1,46 @@
 <?php
-namespace Kanxpack\Session;
+namespace Kanxpack;
 
 class Session {
 
-	public static function start(): void
+	protected static $sessionPrefix = "";
+
+	public static function getInstance() : static
 	{
-		@session_start();
-		return self;
+		return new static();
 	}
 
+	public static function start() : self
+	{
+		@session_start();
+		return self::getInstance();
+	}
+
+	public static function id() : string
+	{
+		return session_id();
+	}
+
+	public static function createId(string $prefix = "") : string
+	{
+		self::$sessionPrefix = $prefix;
+		@session_create_id(self::$sessionPrefix);
+		return self::getInstance();
+	}
+
+	public static function prefix() : string
+	{
+		return self::$sessionPrefix;
+	}
+
+	public static function destroy() : void
+	{
+		@session_destroy();
+		return self::getInstance();
+	}
+
+	public static function name(?string $name = null) : string|false
+	{
+		return session_name($name);
+	}
 }
