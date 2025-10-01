@@ -1,10 +1,10 @@
 {
-    "name": "kanxphp/session",
+    "name": "kanxpack/session",
     "description": "Simple API for PHP Session",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Kanxphp\\Session\\": "src/"
+            "Kanxpack\\Session\\": "src/"
         }
     },
     "authors": [
