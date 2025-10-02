@@ -5,8 +5,6 @@ require_once('SessionCache.php');
 
 class Session {
 
-	use SessionCache;
-
 	protected static $sessionPrefix = "";
 
 	public static function getInstance() : static
@@ -54,10 +52,41 @@ class Session {
 		return self::getInstance();
 	}
 
-	//public static function cacheExpire(?int $value = null): int|false
-	//{
-	//	return self::expire($value);
-	//}
+	public static function commit() : self
+	{
+		@session_write_close();
+		return self::getInstance();
+	}
 
-	
+	public static function writeClose() : self
+	{
+		self::commit();
+		return self::getInstance();
+	}
+
+	public static function decode(string $data) : bool
+	{
+		return @session_decode($data);
+	}
+
+	public static function session_encode() : string|false
+	{
+		return @session_encode();
+	}
+
+	public static function garbageCollection() : int|false
+	{
+		return @session_gc();
+	}
+
+	public static function getCookieParameters() : array
+	{
+		return @session_get_cookie_params();
+	}
+
+	public static function cache() : SessionCache
+	{
+		return SessionCache::getInstance();
+	}
+
 }
