@@ -1,7 +1,11 @@
 <?php
 namespace Kanxpack;
 
+require_once('SessionCache.php');
+
 class Session {
+
+	use SessionCache;
 
 	protected static $sessionPrefix = "";
 
@@ -33,7 +37,7 @@ class Session {
 		return self::$sessionPrefix;
 	}
 
-	public static function destroy() : void
+	public static function destroy() : self
 	{
 		@session_destroy();
 		return self::getInstance();
@@ -43,4 +47,17 @@ class Session {
 	{
 		return session_name($name);
 	}
+
+	public static function abort() : self
+	{
+		@session_abort();
+		return self::getInstance();
+	}
+
+	//public static function cacheExpire(?int $value = null): int|false
+	//{
+	//	return self::expire($value);
+	//}
+
+	
 }
