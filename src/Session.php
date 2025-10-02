@@ -2,6 +2,7 @@
 namespace Kanxpack;
 
 require_once('SessionCache.php');
+require_once('SessionCookie.php');
 
 class Session {
 
@@ -87,6 +88,11 @@ class Session {
 	public static function cache() : SessionCache
 	{
 		return SessionCache::getInstance();
+	}
+
+	public static function cookie() : SessionCookie
+	{
+		return SessionCookie::getInstance();
 	}
 
 }
