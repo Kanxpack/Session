@@ -88,27 +88,27 @@ class SessionCookie {
 
 	public static function getLifetime() : int
 	{
-		return self::$lifetime;
+		return (int)self::$lifetime;
 	}
 
 	public static function getPath() : ?string
 	{
-		return self::$path;
+		return (string)self::$path;
 	}
 
 	public static function getDomain() : ?string
 	{
-		return self::$domain;
+		return (string)self::$domain;
 	}
 
 	public static function getSecure() : ?bool
 	{
-		return self::$secure;
+		return (bool)self::$secure;
 	}
 
 	public static function getHttpOnly() : ?bool
 	{
-		return self::$httponly;
+		return (bool)self::$httponly;
 	}
 
 }
