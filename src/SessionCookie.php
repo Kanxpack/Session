@@ -7,8 +7,8 @@ class SessionCookie {
 	private static $lifetime = 300;
  	private static $path = '';
  	private static $domain = '';
- 	private static $secure = '';
- 	private static $httponly = '';
+ 	private static $secure = false;
+ 	private static $httponly = false;
 
     public static function getInstance() 
     { 
@@ -70,11 +70,11 @@ class SessionCookie {
 	public static function set() : self
 	{
 		self::setParams(
-			self::$lifetime,
-			self::$path,
-			self::$domain,
-			self::$secure,
-			self::$httponly
+			self::getLifetime(),
+			self::getPath(),
+			self::getDomain(),
+			self::getSecure(),
+			self::getHttpOnly()
 		);
 		
 		return self::getInstance();
@@ -83,6 +83,26 @@ class SessionCookie {
 	public static function getLifetime() : int
 	{
 		return self::$lifetime;
+	}
+
+	public static function getPath() : string
+	{
+		return self::$path;
+	}
+
+	public static function getDomain() : string
+	{
+		return self::$domain;
+	}
+
+	public static function getSecure() : bool
+	{
+		return self::$secure;
+	}
+
+	public static function getHttpOnly() : bool
+	{
+		return self::$httponly;
 	}
 
 }
