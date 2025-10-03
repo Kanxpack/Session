@@ -21,19 +21,25 @@ class SessionCookie {
 	}
 
 	public static function setParams(
-	    int $lifetime_or_options,
+	    int $lifetime,
 	    ?string $path = null,
 	    ?string $domain = null,
 	    ?bool $secure = null,
 	    ?bool $httponly = null
 	): bool
 	{
+		self::lifetime($lifetime);
+		self::path($path);
+		self::domain($domain);
+		self::secure($secure);
+		self::httponly($httponly);
+
 		return session_set_cookie_params(
-			    $lifetime_or_options,
-			    $path,
-			    $domain,
-			    $secure,
-			    $httponly
+			    self::getLifetime(),
+				self::getPath(),
+				self::getDomain(),
+				self::getSecure(),
+				self::getHttpOnly()
 			);
 	}
 
@@ -85,22 +91,22 @@ class SessionCookie {
 		return self::$lifetime;
 	}
 
-	public static function getPath() : string
+	public static function getPath() : ?string
 	{
 		return self::$path;
 	}
 
-	public static function getDomain() : string
+	public static function getDomain() : ?string
 	{
 		return self::$domain;
 	}
 
-	public static function getSecure() : bool
+	public static function getSecure() : ?bool
 	{
 		return self::$secure;
 	}
 
-	public static function getHttpOnly() : bool
+	public static function getHttpOnly() : ?bool
 	{
 		return self::$httponly;
 	}
